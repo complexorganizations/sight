@@ -1,6 +1,6 @@
 name: sight
 version: git
-summary: View files in linux
+summary: Inspect files
 description: sight let you inspect your local files.
 confinement: devmode
 base: core18
