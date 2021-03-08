@@ -1,0 +1,17 @@
+name: sight
+version: git
+summary: View files in linux
+description: sight let you inspect your local files.
+confinement: devmode
+base: core18
+parts:
+  test-httplab:
+    plugin: go
+    go-importpath: github.com/complexorganizations/sight
+    source: .
+    source-type: git
+    build-packages:
+      - gcc
+apps:
+  sight:
+    command: bin/sight
