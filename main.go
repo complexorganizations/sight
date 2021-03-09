@@ -8,9 +8,13 @@ import (
 )
 
 func main() {
-	content, err := ioutil.ReadFile(os.Args[1])
-	if err != nil {
-		log.Fatal(err)
+	if len(os.Args) > 1 {
+		content, err := ioutil.ReadFile(os.Args[1])
+		if err != nil {
+			log.Fatal(err)
+		}
+		fmt.Printf("%s", content)
+	} else {
+		os.Exit(0)
 	}
-	fmt.Printf("%s", content)
 }
