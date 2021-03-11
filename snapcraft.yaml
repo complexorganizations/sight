@@ -1,17 +1,16 @@
 name: sight
 version: git
+base: core18
+grade: stable
+confinement: strict
 summary: Inspect files
 description: sight let you inspect your local files.
-confinement: devmode
-base: core18
 parts:
-  test-httplab:
+  sight:
     plugin: go
     go-importpath: github.com/complexorganizations/sight
     source: .
     source-type: git
-    build-packages:
-      - gcc
 apps:
   sight:
     command: bin/sight
