@@ -7,14 +7,20 @@ import (
 	"os"
 )
 
-func main() {
+var systemFilePath string
+
+func init() {
 	if len(os.Args) > 1 {
-		content, err := ioutil.ReadFile(os.Args[1])
-		if err != nil {
-			log.Fatal(err)
-		}
-		fmt.Printf("%s", content)
+		systemFilePath = os.Args[1]
 	} else {
-		os.Exit(0)
+		log.Fatal("Error: No argument passed.")
 	}
+}
+
+func main() {
+	content, err := ioutil.ReadFile(systemFilePath)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("%s", content)
 }
