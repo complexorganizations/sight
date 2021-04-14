@@ -18,9 +18,21 @@ func init() {
 }
 
 func main() {
-	content, err := ioutil.ReadFile(systemFilePath)
-	if err != nil {
-		log.Fatal(err)
+	if fileExists(systemFilePath) {
+		content, err := ioutil.ReadFile(systemFilePath)
+		if err != nil {
+			log.Fatal(err)
+		}
+		fmt.Printf("%s", content)
+	} else {
+		log.Fatal("Error: Not a valid file")
 	}
-	fmt.Printf("%s", content)
+}
+
+func fileExists(filename string) bool {
+	info, err := os.Stat(filename)
+	if os.IsNotExist(err) {
+		return false
+	}
+	return !info.IsDir()
 }
