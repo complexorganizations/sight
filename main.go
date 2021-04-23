@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
 	"log"
 	"os"
 )
@@ -15,18 +14,17 @@ func init() {
 	} else {
 		log.Fatal("Error: No argument passed.")
 	}
+	if !fileExists(systemFilePath) {
+		log.Fatal("Error: Not a valid file")
+	}
 }
 
 func main() {
-	if fileExists(systemFilePath) {
-		content, err := ioutil.ReadFile(systemFilePath)
-		if err != nil {
-			log.Fatal(err)
-		}
-		fmt.Printf("%s", content)
-	} else {
-		log.Fatal("Error: Not a valid file")
+	content, err := os.ReadFile(systemFilePath)
+	if err != nil {
+		log.Fatal(err)
 	}
+	fmt.Printf("%s", content)
 }
 
 func fileExists(filename string) bool {
